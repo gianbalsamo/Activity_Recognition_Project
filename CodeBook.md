@@ -1,77 +1,58 @@
 # Code Book
 
-This code book describes my R script *run_analysis.R*.
-The program of this R script manipulates data from a Human Activity Recognition Study.
-In my program, individual lines of code or set of lines are preceded by comments 
-that describe what the code and functions do. In this code book, I refer to those 
-comments as *sections*. For each one of the 16 section, I explain what it does a bit 
-more explicitely than I do in the R script.
+I have based my project of the UCI HAR dataset, which contains the results of a Human
+Activity Recognition Study made Using Smartphones Datasets and using 30 volunteers. This study was executed by
+scientists affiliated with the Non Linear Complex Systems Laboratory of the University of 
+Genova. Italy. The URL of the UCI HAR dataset is found at: <https://d396qusza40orc.cloudfront.net
+/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip>. A full description of the study may be 
+found at: <http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+
+Using+Smartphones>.
 
-## DESCRIPTION OF SECTIONS
-
-1. The **install and load packages section** installs the needed packages and loads them to 
-the library.
-
-2. The **make/select target folder section** verifies the existence of the directory 
-"project". If it turns out that this directory does not exists, it creates it.
+## Description
  
-3. The **download data section** downloads and unzips the data set. The resulting file
-is stored in the newly created folder *unzipped*.
- 
-4. The **read data section** upload 7 data frames from the unzipped data file and 
-assigns names to them. As the data frames' new (and old) names indicate, six of these
-data frames can be linked to one another, three by three, by row. The columns of the 
-*X_test* and *X_train* data frames correspond to the 561 entries of column n.2 in 
-the data frame named *features*.
+The UCI HAR dataset contains 4 files and two folders, named, respectively, *test* and
+*train*. *ReadMe* files explains that *the experiments have been carried out with 
+a group of 30 volunteers within an age bracket of 19-48 years. Each person performed 
+six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, 
+LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist.* The study captures 
+3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. 
+In the dataset, the 3 axes are identified by the letters X, Y, and Z. The dataset is 
+partitioned into two sets, 70% of the volunteers generating the training data and 
+30% generating the test data. This explains why there are 2 folders, *train* and 
+*test*, within the UCI HAR dataset.  
 
-5. The **make tables w/ features plus subjects plus activities section** creates two 
-new tables, *table_test* and *table_train*, each binding one of the two groups of 
-three data frames which can be linked by row, as mentioned above. The resulting 
-*table_test* and *table_train* include 561 features with their corresponding subjects 
-and activities.
+For each observation the study captures the triaxial acceleration and the estimated 
+body acceleration, the triaxial angular velocity, a 561-feature vector with time and 
+frequency domain variables, the pertinent activity, and a number in the range 1:30 
+identifying the subject who carried out the experiment.
+The labels identifying the 561 features and linking them to the rest of the dataset
+are provided by the file *features.txt*. The labels identifying the 6 activities and
+linking them to the rest of the dataset are provided by the files *y_test.txt* and
+*y_train.txt*. The labels identifying the 30 subjects  and linking them to the rest of 
+the dataset are provided by the files *subject_test.txt* and *subject_train.txt*.
 
-6. The **name columns for subject and activity section** renames the two pertinent 
-columns in each of these new tables.
+What follows is a concise description of my R script's manipulation of all of these 
+data. The structure of the code is described in the ReadMe document. My script:
 
-7. The **unify two tables into one section** merges these two tables into a 
-10299 x 563 table, called *merged*.
+1. Merges the training and the test data, together with the pertinent feature, subject,
+and activity labels. The result is a 10299 x 563 data frame.
+2. It extracts from this data frame the variables (i.e, the features) that measure,
+respectively, the means and standard deviations, labeled of course by subject and 
+activity. The resulting *tableOfMeasurements* is a 10299 x 68 data frame.
+3. In an attempt to reach greater clarity, it renames all the variables in this data 
+frame, with the exception of the 2 variables designating subject and activity, and it 
+turns the 1:6 numbers that identify the activities into the  names of those very 
+activities.
+4. It computes the average of all variables, column-wise, and by activity and subject,
+obtaining thereby the 180 x 68 data frame *Table_of_Averages*. This is what the first
+row and first four columns of *Table_of_Averages* look like.
+```
+> Table_of_Averages[1, 1:4]
+  activity subject TimeBodyAccelerationMean-X TimeBodyAccelerationMean-Y
+1   Laying       1                  0.2215982                -0.04051395
+```
+5. Finally, my script writes this table as a txt file onto the folder *project* in the 
+working space, and calls it *The_Table_of_Averages.txt*.
 
-8. The **make a vector of features' names section** makes a 561-element vector of 
-the features' names from the data set.
+End of code book.
 
-9. The **identify the features that measure means and standard deviations section** 
-creates two logical vectors that identify the features from the original data set 
-(and from *merged* as well) that measure either means or standard deviations.
-
-10. The **identify the indexes of the above features section** creates two integer 
-vectors that contain  the indexes of the above selected features from the table 
-*merged*.
-
-11. The **join the two above vectors** section joins the two above integer vectors 
-of indexes.
-
-12. The **create a table inclusive only of the variables (i.e, the features) that 
-measure, respectively, means and standard deviations, plus the variables that identify the 
-subject and the activity section** creates a new 180 x 68 table, named 
-*TableOfMeasurements*. This table contains the variables (i.e, the features) that 
-measure,respectively, means and standard deviations, as well as the two elements that 
-identify,respectively, the subject and the activity pertinent to such variables.
-
-13. The **rename columns in TableOfMeasurements section** renames the first 66 
-columns of *TableOfMeasurements*. I did this renaming in order to satisfy one of the 
-project's assigned tasks, although I think that these variables' original names were 
-pretty good and clear as they were.
-
-14. The **turn the numbers that identify the activities into the  names of those 
-activities** section turns the numbers, ranging from 1 to 6, that identify the various 
-activities in column n. 68 of *TableOfMeasurements* into the 6 names of those same 
-activities, namely,*Walking*,*Walking Upstairs*,*Walking Downstairs*,*Sitting*,
-*Standing*, and *Laying*.
-
-15. The **create the required table of averages section** creates the table 
-*Table_of_Averages* by calculating, column-wise, the first 66 variables' means.
-
-16. The **write therequired table to folder in working space and call it 
-'The_Table_of_Averages.txt' section** writes the *Table_of_Averages* as a 
-txt file onto the directory *project* and calls it: *The_Table_of_Averages.txt*.
-  End of Code Book.
