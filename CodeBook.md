@@ -53,7 +53,7 @@ look like.
 1   Laying       1                  0.2215982                -0.04051395
 ```
 5. Finally, my script writes this table as a txt file onto the folder *project* in the 
-working space, and calls it *The_Table_of_Averages.txt*.
+project directory, and calls it *The_Table_of_Averages.txt*.
 
 End of code book.
 
