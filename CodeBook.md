@@ -45,8 +45,8 @@ turns the 1:6 numbers that identify the activities into the  names of those very
 activities.
 4. It computes the average of all variables, column-wise, and by activity and subject,
 obtaining thereby the 180 x 68 data frame *Table_of_Averages*. (I have not renamed the 
-variables.) This is what the first row and first four columns of *Table_of_Averages* 
-look like.
+variables, as the name of the table defines their nature clearly enough.) This is what 
+the first row and first four columns of *Table_of_Averages* look like.
 ```
 > Table_of_Averages[1, 1:4]
   activity subject TimeBodyAccelerationMean-X TimeBodyAccelerationMean-Y
