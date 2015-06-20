@@ -21,7 +21,7 @@ For a detailed description of the original data set, the variables considered in
 * Clone the Activity_Recognition_Project repo
 * Start a fresh session in RStudio
 * Run the R script: run_analysis.R
-* Find final dataset at project/The_Table_of_Averages.txt
+* Find final dataset at: "./project/The_Table_of_Averages.txt"
 * Read this final dataset with command: < read.table("The_Table_of_Averages.txt", header=T) >
 
 ## R SCRIPT DESCRIPTION
