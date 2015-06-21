@@ -53,32 +53,8 @@ indexes<-append(columnsForMean,columnsForStd)
 tableOfMeasurements<-merged[,c(indexes, 562,563)]
 
 ## rename columns in TableOfMeasurements:
-colnames(tableOfMeasurements)[1:66]<-c('TimeBodyAccelerationMean-X','TimeBodyAccelerationMean-Y',
-                                       'TimeBodyAccelerationMean-Z','TimeGravityAccelerationMean-X','TimeGravityAccelerationMean-Y',
-                                       'TimeGravityAccelarationMean-Z','TimeBodyAccelerationJerkMean-X',
-                                       'TimeBodyAccelerationJerkMean-Y','TimeBodyAccelerationJerkMean-Z','TimeBodyVelocityMean-X',
-                                       'TimeBodyVelocityMean-Y','TimeBodyVelocityMean-Z','TimeBodyVelocityJerkMean-X',
-                                       'TimeBodyVelocityJerkMean-Y','TimeBodyVelocityJerkMean-Z','TimeBodyAccelarationMagMean',
-                                       'TimeGravityAccelerationMagMean','TimeBodyAccelerationJerkMagMean','TimeBodyVelocityMagMean',
-                                       'TimeBodyVelocityJerkMagMean','FrequencyBodyAccelerationMean-X',
-                                       'FrequencyBodyAccelerationMean-Y','FrequencyBodyAccelerationMean-Z',
-                                       'FrequencyBodyAccelerationJerkMean-X','FrequencyBodyAccelerationJerkMean-Y',
-                                       'FrequencyBodyAccelerationJerkMean-Z','FrequencyBodyVelocityMean-X',
-                                       'FrequencyBodyVelocityMean-Y','FrequencyBodyVelocityMean-Z','FrequencyBodyAccelerationMagMean',
-                                       'FrequencyBodyBodyAccelerationJerkMagMean','FrequencyBodyBodyVelocityMagMean',
-                                       'FrequencyBodyBodyVelocityJerkMagMean','TimeBodyAccelerationStd-X','TimeBodyAccelerationStd-Y',
-                                       'TimeBodyAccelerationStd-Z','TimeGravityAccelerationStd-X','TimeGravityAccelerationStd-Y',
-                                       'TimeGravityAccelerationStd-Z','TimeBodyAccelerationJerkStd-X','TimeBodyAccelerationJerkStd-Y',
-                                       'TimeBodyAccelerationJerkStd-Z','TimeBodyVelocityStd-X','TimeBodyVelocityStd-Y',
-                                       'TimeBodyVelocityStd-Z','TimeBodyVelocityJerkStd-X','TimeBodyVelocityJerkStd-Y',
-                                       'TimeBodyVelocityJerkStd-Z','TimeBodyAccelarationMagStd','TimeGravityAccelerationMagStd',
-                                       'TimeBodyAccelerationJerkMagStd','TimeBodyVelocityMagStd','TimeBodyVelocityJerkMagStd',
-                                       'FrequencyBodyAccelerationStd-X','FrequencyBodyAccelerationStd-Y',
-                                       'FrequencyBodyAccelerationStd-Z','FrequencyBodyAccelerationJerkStd-X',
-                                       'FrequencyBodyAccelerationJerkStd-Y','FrequencyBodyAccelerationJerkStd-Z',
-                                       'FrequencyBodyVelocityStd-X','FrequencyBodyVelocityStd-Y','FrequencyBodyVelocityStd-Z',
-                                       'FrequencyBodyAccelerationMagSt','FrequencyBodyBodyAccelerationJerkMagStd',
-                                       'FrequencyBodyBodyVelocityMagStd','FrequencyBodyBodyVelocityJerkStd')
+columnNames<-stringa[indexes]
+colnames(tableOfMeasurements)[1:66]<-as.character(columnNames)
 
 ## turn the numbers that identify the activities into the  names of the those activities: 
 tableOfMeasurements[which(tableOfMeasurements$activity==1) ,'activity']<-'Walking'
