@@ -39,13 +39,11 @@ and activity labels. The result is a 10299 x 563 data frame.
 2. It extracts from this data frame the variables (i.e, the features) that measure,
 respectively, the means and standard deviations, labeled of course by subject and 
 activity. The resulting *tableOfMeasurements* is a 10299 x 68 data frame.
-3. In an attempt to reach greater clarity, it renames all the variables in this data 
-frame, with the exception of the 2 variables designating subject and activity, and it 
-turns the 1:6 numbers that identify the activities into the  names of those very 
+3. It turns the 1:6 numbers that identify the activities into the  names of those very 
 activities.
 4. It computes the average of all variables, column-wise, and by activity and subject,
 obtaining thereby the 180 x 68 data frame *Table_of_Averages*. (I have not renamed the 
-variables, as the name of the table defines their nature clearly enough.) This is what 
+variables, as the name of the table defines their new nature clearly enough.) This is what 
 the first row and first four columns of *Table_of_Averages* look like.
 ```
 > Table_of_Averages[1, 1:4]
