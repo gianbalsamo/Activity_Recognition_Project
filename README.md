@@ -81,11 +81,7 @@ measure,respectively, means and standard deviations, as well as the two elements
 identify,respectively, the subject and the activity pertinent to such variables.
 
 13. The **rename columns in TableOfMeasurements section** renames the first 66 
-columns of *TableOfMeasurements*. This project being due by the end of the third week of
-a 4-week course, I could not take advantage of the pattern-replacement functions
-(i.e., sub() and gsub()) described in Lesson 1 of Week 4. This explain why this section
-is rather bulky. It'll be easy to fix when I find the time. But it does what's supposed
-to do.
+columns of *TableOfMeasurements*. 
 
 14. The **turn the numbers that identify the activities into the  names of those 
 activities** section turns the numbers, ranging from 1 to 6, that identify the various 
